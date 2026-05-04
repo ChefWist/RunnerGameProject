@@ -3,6 +3,7 @@ import pygame
 from enemy import Enemy
 from player import Player
 from screen import Screen
+from snail import Snail
 
 # Class
 class EnemyHandler:
@@ -18,7 +19,7 @@ class EnemyHandler:
 
     # Generate Enemy
     def generateEnemy(self, pygame: pygame, screen: Screen):
-        self.enemys.append(Enemy(pygame, screen, "graphics/snail/snail1.png"))
+        self.enemys.append(Snail(pygame, screen))
     
     # Update Enemys
     def update(self, player: Player) -> bool:
