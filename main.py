@@ -1,5 +1,6 @@
 # Imports
 import pygame
+from enemyHandler import EnemyHandler
 from screen import Screen
 from eventHandler import EventHandler
 from background import Background
@@ -18,35 +19,25 @@ screen = Screen(pygame)
 # Sprites
 background = Background(pygame, screen)
 player = Player(pygame, screen)
-
-# Enemys
-enemys: Enemy = []
-enemyTimer: int = pygame.USEREVENT + 1
-pygame.time.set_timer(enemyTimer,1500)
-
+enemyH = EnemyHandler(pygame)
 
 # Game Loop
 while True:
 
     # Events
-    enemys = eventH.handleEvents(pygame, screen, player, enemyTimer, enemys)
+    eventH.handleEvents(pygame, screen, player, enemyH)
     
     # Clears Screen
     screen.screen.fill("Black")
 
     # Update
     player.update()
-    for enemy in enemys:
-        if not enemy.update():
-            enemys.pop(enemys.index(enemy))
-            continue
-        if player.rect.colliderect(enemy.rect):
-            eventH.quit(pygame)
-    
+    if not enemyH.update(player): eventH.quit(pygame)
+
     # Draw
     background.draw()
     player.draw()
-    for enemy in enemys: enemy.draw()
+    enemyH.draw()
 
     # Updates Display and Ticks
     pygame.display.update()
