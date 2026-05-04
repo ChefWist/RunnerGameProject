@@ -4,6 +4,8 @@ from enemy import Enemy
 from player import Player
 from screen import Screen
 from snail import Snail
+from random import randint
+from fly import Fly
 
 # Class
 class EnemyHandler:
@@ -19,7 +21,8 @@ class EnemyHandler:
 
     # Generate Enemy
     def generateEnemy(self, pygame: pygame, screen: Screen):
-        self.enemys.append(Snail(pygame, screen))
+        if randint(0,1): self.enemys.append(Snail(pygame, screen))
+        else: self.enemys.append(Fly(pygame, screen))
     
     # Update Enemys
     def update(self, player: Player) -> bool:
