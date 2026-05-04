@@ -18,25 +18,35 @@ screen = Screen(pygame)
 # Sprites
 background = Background(pygame, screen)
 player = Player(pygame, screen)
-enemy = Enemy(pygame, screen, "graphics/snail/snail1.png")
+
+# Enemys
+enemys: Enemy = []
+enemyTimer: int = pygame.USEREVENT + 1
+pygame.time.set_timer(enemyTimer,1500)
+
 
 # Game Loop
 while True:
 
     # Events
-    eventH.handleEvents(pygame, player)
+    enemys = eventH.handleEvents(pygame, screen, player, enemyTimer, enemys)
     
     # Clears Screen
     screen.screen.fill("Black")
 
     # Update
     player.update()
-    enemy.update()
-
+    for enemy in enemys:
+        if not enemy.update():
+            enemys.pop(enemys.index(enemy))
+            continue
+        if player.rect.colliderect(enemy.rect):
+            eventH.quit(pygame)
+    
     # Draw
     background.draw()
     player.draw()
-    enemy.draw()
+    for enemy in enemys: enemy.draw()
 
     # Updates Display and Ticks
     pygame.display.update()
