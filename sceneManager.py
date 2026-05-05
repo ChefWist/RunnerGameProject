@@ -9,3 +9,5 @@ class SceneManager:
 
     def get_scene(self) -> int:
         return self.scene
+    def set_scene(self, scene: int):
+        self.scene = scene

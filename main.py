@@ -30,7 +30,7 @@ enemyH = EnemyHandler(pygame)
 while True:
 
     # Events
-    eventH.handleEvents(pygame, screen, player, enemyH)
+    eventH.handleEvents(pygame, screen, sceneM, scoreH, player, enemyH)
     
     # Clears Screen
     screen.screen.fill("Black")
@@ -43,7 +43,13 @@ while True:
             # Update
             scoreH.update(pygame)
             player.update()
-            if not enemyH.update(player): eventH.quit(pygame)
+            playerAlive: bool = enemyH.update(player)
+            if not playerAlive:
+                # Death
+                player.rect.midbottom = (120,300)
+                player.yVel = 0
+                enemyH.enemys = []
+                sceneM.set_scene(sceneM.MENU)
 
             # Draw
             background.draw()
