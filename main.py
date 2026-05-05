@@ -20,7 +20,7 @@ sceneM = SceneManager()
 
 # Screen
 screen = Screen(pygame)
-menu = Menu()
+menu = Menu(font)
 
 # Sprites
 background = Background(pygame, screen)
@@ -61,7 +61,7 @@ while True:
         # Menu Scene
         case sceneM.MENU:
             # Draw
-            menu.draw(screen)
+            menu.draw(screen, scoreH)
 
 
     # Updates Display and Ticks
