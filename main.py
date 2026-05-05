@@ -8,6 +8,7 @@ from background import Background
 from player import Player
 from sceneManager import SceneManager
 from enemy import Enemy
+from menu import Menu
 pygame.init()
 
 # System
@@ -19,6 +20,7 @@ sceneM = SceneManager()
 
 # Screen
 screen = Screen(pygame)
+menu = Menu()
 
 # Sprites
 background = Background(pygame, screen)
@@ -56,6 +58,11 @@ while True:
             scoreH.draw(screen)
             player.draw()
             enemyH.draw()
+        # Menu Scene
+        case sceneM.MENU:
+            # Draw
+            menu.draw(screen)
+
 
     # Updates Display and Ticks
     pygame.display.update()
