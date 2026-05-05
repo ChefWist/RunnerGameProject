@@ -6,6 +6,7 @@ from screen import Screen
 from eventHandler import EventHandler
 from background import Background
 from player import Player
+from sceneManager import SceneManager
 from enemy import Enemy
 pygame.init()
 
@@ -14,6 +15,7 @@ MAX_FPS = 60
 clock = pygame.time.Clock()
 eventH = EventHandler()
 font = pygame.font.Font("font/Pixeltype.ttf", 50)
+sceneM = SceneManager()
 
 # Screen
 screen = Screen(pygame)
@@ -33,16 +35,21 @@ while True:
     # Clears Screen
     screen.screen.fill("Black")
 
-    # Update
-    scoreH.update(pygame)
-    player.update()
-    if not enemyH.update(player): eventH.quit(pygame)
+    # Check Scene
+    match sceneM.get_scene():
+        # Playing Scene
+        case sceneM.PLAYING:
 
-    # Draw
-    background.draw()
-    scoreH.draw(screen)
-    player.draw()
-    enemyH.draw()
+            # Update
+            scoreH.update(pygame)
+            player.update()
+            if not enemyH.update(player): eventH.quit(pygame)
+
+            # Draw
+            background.draw()
+            scoreH.draw(screen)
+            player.draw()
+            enemyH.draw()
 
     # Updates Display and Ticks
     pygame.display.update()
