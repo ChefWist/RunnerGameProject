@@ -29,12 +29,14 @@ background = Background(pygame, screen)
 scoreH = ScoreHandler(font)
 player = Player(pygame, screen)
 enemyH = EnemyHandler(pygame)
+spriteAnimationTimer = pygame.USEREVENT + 2
+pygame.time.set_timer(spriteAnimationTimer, int(1000/5))
 
 # Game Loop
 while True:
 
     # Events
-    eventH.handleEvents(pygame, screen, sceneM, soundH, scoreH, player, enemyH)
+    eventH.handleEvents(pygame, screen, sceneM, soundH, scoreH, player, enemyH, spriteAnimationTimer)
     
     # Clears Screen
     screen.screen.fill("Black")

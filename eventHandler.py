@@ -14,7 +14,7 @@ from soundHandler import SoundHandler
 class EventHandler:
 
     # Handle Events
-    def handleEvents(self, pygame: pygame, screen: Screen, sceneM: SceneManager, soundH: SoundHandler, scoreH: ScoreHandler, player: Player, enemyH: EnemyHandler): 
+    def handleEvents(self, pygame: pygame, screen: Screen, sceneM: SceneManager, soundH: SoundHandler, scoreH: ScoreHandler, player: Player, enemyH: EnemyHandler, spriteAnimationTimer: int): 
         # Loops through all Events
         for event in pygame.event.get():
             # Quit Button
@@ -30,6 +30,10 @@ class EventHandler:
                     # Enemy
                     if event.type == enemyH.enemyTimer:
                         enemyH.generateEnemy(pygame, screen)
+                    # Animation Timer
+                    if event.type == spriteAnimationTimer:
+                        player.tickAnimation()
+                        enemyH.tickAnimation()
                 # Menu
                 case sceneM.MENU:
                     if event.type == pygame.KEYDOWN:

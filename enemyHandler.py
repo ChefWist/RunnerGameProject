@@ -24,6 +24,11 @@ class EnemyHandler:
         if randint(0,1): self.enemys.append(Snail(pygame, screen))
         else: self.enemys.append(Fly(pygame, screen))
     
+    # Tick Animation
+    def tickAnimation(self):
+        for enemy in self.enemys:
+            enemy.tickAnimation()
+    
     # Update Enemys
     def update(self, player: Player) -> bool:
         for enemy in self.enemys:
