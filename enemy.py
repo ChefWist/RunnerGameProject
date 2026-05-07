@@ -10,8 +10,8 @@ class Enemy(Sprite):
     SPEED = 5
 
     # Construtor
-    def __init__(self, pygame, screen, imagePath):
-        super().__init__(pygame, screen, imagePath)
+    def __init__(self, pygame, screen, imagePaths):
+        super().__init__(pygame, screen, imagePaths)
         self.rect.bottomleft = (randint(900,1100), 300)
     
     # Update

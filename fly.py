@@ -7,5 +7,5 @@ class Fly(Enemy):
 
     # Constructor
     def __init__(self, pygame, screen):
-        super().__init__(pygame, screen, "graphics/Fly/Fly1.png")
+        super().__init__(pygame, screen, ["graphics/Fly/Fly1.png", "graphics/Fly/Fly2.png"])
         self.rect.bottom = 200

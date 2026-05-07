@@ -13,7 +13,7 @@ class Player(Sprite):
 
     # Constructor
     def __init__(self, pygame, screen):
-        super().__init__(pygame, screen, "graphics/Player/player_walk_1.png")
+        super().__init__(pygame, screen, ["graphics/Player/player_walk_1.png", "graphics/Player/player_walk_2.png"])
         self.rect.midbottom = (120, 300)
 
     # Update
