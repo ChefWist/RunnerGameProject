@@ -1,5 +1,6 @@
 # Imports
 import pygame
+from soundHandler import SoundHandler
 from sprite import Sprite
 
 # Class
@@ -24,8 +25,10 @@ class Player(Sprite):
         if self.onFloor(): self.rect.bottom = 300
 
     # Jump
-    def jump(self):
-        if self.onFloor(): self.yVel = -self.JUMP_VELOCITY
+    def jump(self, soundH: SoundHandler):
+        if self.onFloor():
+            self.yVel = -self.JUMP_VELOCITY
+            soundH.playJumpSFX()
 
     # Function
     def onFloor(self) -> bool:

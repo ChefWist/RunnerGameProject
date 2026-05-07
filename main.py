@@ -7,12 +7,14 @@ from eventHandler import EventHandler
 from background import Background
 from player import Player
 from sceneManager import SceneManager
+from soundHandler import SoundHandler
 from enemy import Enemy
 from menu import Menu
 pygame.init()
 
 # System
 MAX_FPS = 60
+soundH = SoundHandler(pygame)
 clock = pygame.time.Clock()
 eventH = EventHandler()
 font = pygame.font.Font("font/Pixeltype.ttf", 50)
@@ -32,7 +34,7 @@ enemyH = EnemyHandler(pygame)
 while True:
 
     # Events
-    eventH.handleEvents(pygame, screen, sceneM, scoreH, player, enemyH)
+    eventH.handleEvents(pygame, screen, sceneM, soundH, scoreH, player, enemyH)
     
     # Clears Screen
     screen.screen.fill("Black")

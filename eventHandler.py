@@ -8,11 +8,13 @@ from screen import Screen
 from enemyHandler import EnemyHandler
 from sys import exit
 
+from soundHandler import SoundHandler
+
 # Event Handler
 class EventHandler:
 
     # Handle Events
-    def handleEvents(self, pygame: pygame, screen: Screen, sceneM: SceneManager, scoreH: ScoreHandler, player: Player, enemyH: EnemyHandler): 
+    def handleEvents(self, pygame: pygame, screen: Screen, sceneM: SceneManager, soundH: SoundHandler, scoreH: ScoreHandler, player: Player, enemyH: EnemyHandler): 
         # Loops through all Events
         for event in pygame.event.get():
             # Quit Button
@@ -24,7 +26,7 @@ class EventHandler:
                     # Jump
                     if event.type == pygame.KEYDOWN:
                         if event.key == pygame.K_SPACE:
-                            player.jump()
+                            player.jump(soundH)
                     # Enemy
                     if event.type == enemyH.enemyTimer:
                         enemyH.generateEnemy(pygame, screen)
